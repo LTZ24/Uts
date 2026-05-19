@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Jawaban Pengolahan Citra</title>
+<style>
+  body { font-family: Arial, sans-serif; color: #000; background: #fff; margin: 40px; line-height: 1.6; }
+  h1 { text-align: center; text-decoration: underline; font-size: 18px; }
+  h2 { font-size: 16px; margin-top: 30px; border-bottom: 2px solid #000; padding-bottom: 4px; }
+  h3 { font-size: 15px; margin-top: 20px; }
+  p, li { font-size: 14px; }
+  table { border-collapse: collapse; margin: 10px 0; }
+  table td, table th { border: 1px solid #000; padding: 6px 12px; text-align: center; font-size: 13px; }
+  table th { background: #ddd; font-weight: bold; }
+  .soal { background: #f5f5f5; padding: 10px 15px; border-left: 4px solid #000; margin: 10px 0; font-style: italic; }
+  .step { margin: 8px 0 8px 20px; }
+  .box { border: 1px solid #000; padding: 8px 14px; display: inline-block; margin: 4px 0; }
+  code { font-family: Courier New, monospace; background: #eee; padding: 2px 6px; font-size: 13px; }
+  pre { background: #eee; padding: 10px; font-size: 13px; overflow-x: auto; }
+  hr { border: 1px solid #000; margin: 30px 0; }
+  .page-break { page-break-before: always; margin-top: 60px; }
+</style>
+</head>
+<body>
+
+
+<h1>JAWABAN SOAL PENGOLAHAN CITRA — SET 1 (KUIS)</h1>
+
+<h2>Soal 1</h2>
+<div class="soal">Terdapat sebuah citra <em>grayscale</em> dengan ukuran 200x200 piksel dan 128 derajat keabuan, tentukan ukuran citra tersebut dalam satuan Kbyte!</div>
+
+<h3>Jawaban:</h3>
+<p>Diketahui:</p>
+<ul>
+  <li>Ukuran citra: 200 × 200 piksel</li>
+  <li>Derajat keabuan: 128 = 2<sup>7</sup> → butuh <strong>7 bit</strong> per piksel</li>
+</ul>
+<p><strong>Langkah 1 — Hitung total piksel:</strong></p>
+<div class="step">Total piksel = 200 × 200 = 40.000 piksel</div>
+<p><strong>Langkah 2 — Hitung total bit:</strong></p>
+<div class="step">Total bit = 40.000 × 7 = 280.000 bit</div>
+<p><strong>Langkah 3 — Konversi ke Byte:</strong></p>
+<div class="step">Total byte = 280.000 ÷ 8 = 35.000 byte</div>
+<p><strong>Langkah 4 — Konversi ke Kbyte:</strong></p>
+<div class="step">Total Kbyte = 35.000 ÷ 1024 ≈ <strong>34,18 Kbyte</strong></div>
+<div class="box"><strong>Jawaban: ≈ 34,18 Kbyte</strong></div>
+
+<h2>Soal 2</h2>
+<div class="soal">
+  Diketahui sebuah citra:<br>
+  <table style="margin:10px auto">
+    <tr><td>232</td><td>54</td><td>67</td><td>144</td></tr>
+    <tr><td>143</td><td>90</td><td>112</td><td>87</td></tr>
+    <tr><td>201</td><td>65</td><td>53</td><td>89</td></tr>
+    <tr><td>22</td><td>100</td><td>71</td><td>154</td></tr>
+    <tr><td>109</td><td>167</td><td>132</td><td>43</td></tr>
+  </table>
+  a. Tentukan Derajat Keabuan citra tersebut!<br>
+  b. Tentukan berapa memori yang dibutuhkan untuk menampung citra tersebut!<br>
+  c. Lakukan operasi ambang tunggal terhadap citra tersebut dengan batas ambang 128!
+</div>
+
+<h3>a. Derajat Keabuan</h3>
+<p>Cari nilai piksel <strong>minimum</strong> dan <strong>maksimum</strong>:</p>
+<div class="step">Nilai minimum = <strong>22</strong>, Nilai maksimum = <strong>232</strong></div>
+<p>Derajat keabuan (L) = nilai maksimum − nilai minimum + 1 = 232 − 22 + 1 = <strong>211</strong></p>
+<p>Derajat keabuan yang merepresentasikan bit terkecil yang mencakup 211 level:</p>
+<div class="step">2<sup>7</sup> = 128 &lt; 211 ≤ 256 = 2<sup>8</sup> → <strong>Derajat keabuan = 8 bit (256 level, 0–255)</strong></div>
+<div class="box"><strong>Derajat Keabuan: 8 bit (256 level)</strong></div>
+
+<h3>b. Kebutuhan Memori</h3>
+<p>Ukuran citra: 5 × 4 = 20 piksel, 8 bit per piksel</p>
+<div class="step">Memori = 20 × 8 bit = 160 bit = 160 ÷ 8 = <strong>20 byte</strong></div>
+<div class="box"><strong>Memori = 20 byte</strong></div>
+
+<h3>c. Operasi Ambang Tunggal (Threshold = 128)</h3>
+<p>Aturan: jika nilai piksel ≥ 128 → 255 (putih), jika &lt; 128 → 0 (hitam)</p>
+<table>
+  <tr><td>232→<b>255</b></td><td>54→<b>0</b></td><td>67→<b>0</b></td><td>144→<b>255</b></td></tr>
+  <tr><td>143→<b>255</b></td><td>90→<b>0</b></td><td>112→<b>0</b></td><td>87→<b>0</b></td></tr>
+  <tr><td>201→<b>255</b></td><td>65→<b>0</b></td><td>53→<b>0</b></td><td>89→<b>0</b></td></tr>
+  <tr><td>22→<b>0</b></td><td>100→<b>0</b></td><td>71→<b>0</b></td><td>154→<b>255</b></td></tr>
+  <tr><td>109→<b>0</b></td><td>167→<b>255</b></td><td>132→<b>255</b></td><td>43→<b>0</b></td></tr>
+</table>
+<p><strong>Citra Hasil Thresholding:</strong></p>
+<table>
+  <tr><td>255</td><td>0</td><td>0</td><td>255</td></tr>
+  <tr><td>255</td><td>0</td><td>0</td><td>0</td></tr>
+  <tr><td>255</td><td>0</td><td>0</td><td>0</td></tr>
+  <tr><td>0</td><td>0</td><td>0</td><td>255</td></tr>
+  <tr><td>0</td><td>255</td><td>255</td><td>0</td></tr>
+</table>
+
+
+<h2>Soal 3</h2>
+<div class="soal">Terdapat sebuah citra RGB atau warna, tuliskan coding Python untuk:<br>
+a. Menampilkan citra tersebut ke layar!<br>
+b. Menambah kecerahan sebanyak 15!<br>
+c. Mengubah menjadi citra <em>grayscale</em>!</div>
+
+<h3>Jawaban (Kode Python):</h3>
+<pre>
+import cv2
+import numpy as np
+
+# Membaca citra RGB
+img = cv2.imread('citra.jpg')
+
+# a. Menampilkan citra ke layar
+cv2.imshow('Citra RGB', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# b. Menambah kecerahan sebanyak 15
+brightness = 15
+img_bright = np.clip(img.astype(np.int32) + brightness, 0, 255).astype(np.uint8)
+cv2.imshow('Citra Cerah +15', img_bright)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# c. Mengubah menjadi citra grayscale
+img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+cv2.imshow('Citra Grayscale', img_gray)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+</pre>
+<p><strong>Penjelasan:</strong></p>
+<ul>
+  <li><code>cv2.imread()</code> — membaca file citra ke dalam array NumPy</li>
+  <li><code>cv2.imshow()</code> — menampilkan citra ke layar</li>
+  <li><code>np.clip(img + 15, 0, 255)</code> — menambah nilai setiap piksel sebesar 15, dibatasi 0–255</li>
+  <li><code>cv2.cvtColor(img, COLOR_BGR2GRAY)</code> — konversi RGB ke grayscale menggunakan formula: Y = 0.299R + 0.587G + 0.114B</li>
+</ul>
+
+<h2>Soal 4</h2>
+<div class="soal">Buatlah histogram dan normalisasi histogram dengan data citra sebagai berikut:
+  <table style="margin:10px auto">
+    <tr><td>120</td><td>129</td><td>122</td><td>121</td><td>125</td><td>130</td></tr>
+    <tr><td>124</td><td>128</td><td>125</td><td>125</td><td>129</td><td>129</td></tr>
+    <tr><td>127</td><td>123</td><td>122</td><td>122</td><td>121</td><td>125</td></tr>
+    <tr><td>122</td><td>126</td><td>124</td><td>124</td><td>139</td><td>120</td></tr>
+    <tr><td>128</td><td>128</td><td>123</td><td>123</td><td>129</td><td>121</td></tr>
+    <tr><td>128</td><td>127</td><td>124</td><td>124</td><td>121</td><td>126</td></tr>
+  </table>
+</div>
+
+<h3>Langkah 1 — Hitung Frekuensi (Histogram)</h3>
+<p>Total piksel = 6 × 6 = 36 piksel</p>
+<p>Hitung kemunculan setiap nilai:</p>
+<table>
+  <tr><th>Nilai (k)</th><th>Frekuensi f(k)</th></tr>
+  <tr><td>120</td><td>2</td></tr>
+  <tr><td>121</td><td>4</td></tr>
+  <tr><td>122</td><td>4</td></tr>
+  <tr><td>123</td><td>3</td></tr>
+  <tr><td>124</td><td>5</td></tr>
+  <tr><td>125</td><td>4</td></tr>
+  <tr><td>126</td><td>2</td></tr>
+  <tr><td>127</td><td>2</td></tr>
+  <tr><td>128</td><td>4</td></tr>
+  <tr><td>129</td><td>4</td></tr>
+  <tr><td>130</td><td>1</td></tr>
+  <tr><td>139</td><td>1</td></tr>
+  <tr><th>TOTAL</th><th>36</th></tr>
+</table>
+
+<h3>Langkah 2 — Normalisasi Histogram</h3>
+<p>Normalisasi: P(k) = f(k) / Total piksel = f(k) / 36</p>
+<table>
+  <tr><th>Nilai (k)</th><th>Frekuensi f(k)</th><th>P(k) = f(k)/36</th></tr>
+  <tr><td>120</td><td>2</td><td>2/36 = 0,0556</td></tr>
+  <tr><td>121</td><td>4</td><td>4/36 = 0,1111</td></tr>
+  <tr><td>122</td><td>4</td><td>4/36 = 0,1111</td></tr>
+  <tr><td>123</td><td>3</td><td>3/36 = 0,0833</td></tr>
+  <tr><td>124</td><td>5</td><td>5/36 = 0,1389</td></tr>
+  <tr><td>125</td><td>4</td><td>4/36 = 0,1111</td></tr>
+  <tr><td>126</td><td>2</td><td>2/36 = 0,0556</td></tr>
+  <tr><td>127</td><td>2</td><td>2/36 = 0,0556</td></tr>
+  <tr><td>128</td><td>4</td><td>4/36 = 0,1111</td></tr>
+  <tr><td>129</td><td>4</td><td>4/36 = 0,1111</td></tr>
+  <tr><td>130</td><td>1</td><td>1/36 = 0,0278</td></tr>
+  <tr><td>139</td><td>1</td><td>1/36 = 0,0278</td></tr>
+  <tr><th>TOTAL</th><th>36</th><th>≈ 1,0000</th></tr>
+</table>
+<div class="box"><strong>Cek: ΣP(k) = 36/36 = 1,000 ✓</strong></div>
+
+
+<hr>
+<div class="page-break"></div>
+<h1>JAWABAN SOAL PENGOLAHAN CITRA — SET 2</h1>
+
+<h2>Soal 1 — Citra Grayscale 200×200, Derajat Keabuan 16</h2>
+<div class="soal">
+  Citra grayscale berukuran 200 × 200 piksel dengan derajat keabuan 16.<br>
+  a. Tentukan rentang nilai dari kemungkinan warna yang dihasilkan!<br>
+  b. Hitung kebutuhan memori file tanpa header dari citra tersebut!
+</div>
+
+<h3>a. Rentang Nilai Warna</h3>
+<p>Derajat keabuan = 16 level → 2<sup>4</sup> = 16 → butuh <strong>4 bit</strong> per piksel</p>
+<p>Nilai intensitas yang mungkin: <strong>0, 1, 2, 3, ..., 15</strong></p>
+<div class="box"><strong>Rentang nilai: 0 sampai 15 (16 level, menggunakan 4 bit)</strong></div>
+
+<h3>b. Kebutuhan Memori (tanpa header)</h3>
+<ul>
+  <li>Ukuran citra: 200 × 200 = 40.000 piksel</li>
+  <li>Bit per piksel: 4 bit</li>
+</ul>
+<div class="step">Total bit = 40.000 × 4 = 160.000 bit</div>
+<div class="step">Total byte = 160.000 ÷ 8 = 20.000 byte</div>
+<div class="step">Total Kbyte = 20.000 ÷ 1024 ≈ <strong>19,53 Kbyte</strong></div>
+<div class="box"><strong>Kebutuhan memori = 20.000 byte ≈ 19,53 Kbyte</strong></div>
+
+<h2>Soal 2 — Transformasi Grayscale dan Kontras</h2>
+<div class="soal">
+  Tabel 1. Ilustrasi citra (nilai RGB dengan R=G=B karena tampak single channel):
+  <table style="margin:8px auto">
+    <tr><td>60</td><td>70</td><td>45</td><td>70</td></tr>
+    <tr><td>50</td><td>60</td><td>60</td><td>60</td></tr>
+    <tr><td>70</td><td>50</td><td>60</td><td>50</td></tr>
+    <tr><td>60</td><td>40</td><td>70</td><td>45</td></tr>
+    <tr><td>60</td><td>30</td><td>70</td><td>60</td></tr>
+    <tr><td>60</td><td>70</td><td>70</td><td>50</td></tr>
+    <tr><td>45</td><td>50</td><td>30</td><td>60</td></tr>
+    <tr><td>60</td><td>50</td><td>40</td><td>50</td></tr>
+    <tr><td>50</td><td>50</td><td>50</td><td>70</td></tr>
+  </table>
+  a. Lakukan operasi transformasi citra warna menjadi keabuan (grayscale)!<br>
+  b. Lakukan operasi kontras dengan koefisien penguatan kontras = 3 dan pusat pengontrasan = 60!
+</div>
+
+<h3>a. Transformasi ke Grayscale</h3>
+<p>Karena citra hanya memiliki satu nilai per piksel (grayscale/single channel), nilai grayscale = nilai piksel itu sendiri. Formula: <strong>Gray = 0.299R + 0.587G + 0.114B</strong>. Jika R=G=B=nilai, maka Gray = nilai itu sendiri.</p>
+<p><strong>Hasil citra grayscale (sama dengan input):</strong></p>
+<table>
+  <tr><td>60</td><td>70</td><td>45</td><td>70</td></tr>
+  <tr><td>50</td><td>60</td><td>60</td><td>60</td></tr>
+  <tr><td>70</td><td>50</td><td>60</td><td>50</td></tr>
+  <tr><td>60</td><td>40</td><td>70</td><td>45</td></tr>
+  <tr><td>60</td><td>30</td><td>70</td><td>60</td></tr>
+  <tr><td>60</td><td>70</td><td>70</td><td>50</td></tr>
+  <tr><td>45</td><td>50</td><td>30</td><td>60</td></tr>
+  <tr><td>60</td><td>50</td><td>40</td><td>50</td></tr>
+  <tr><td>50</td><td>50</td><td>50</td><td>70</td></tr>
+</table>
+
+<h3>b. Operasi Kontras</h3>
+<p>Formula penguatan kontras:</p>
+<div class="step"><strong>g(x,y) = α × (f(x,y) − m) + m</strong></div>
+<p>Dimana: α = 3 (koefisien penguatan), m = 60 (pusat pengontrasan)</p>
+<p>Contoh perhitungan beberapa nilai:</p>
+<table>
+  <tr><th>f(x,y)</th><th>g = 3×(f−60)+60</th><th>Hasil (clamp 0–255)</th></tr>
+  <tr><td>60</td><td>3×(60−60)+60 = 0+60 = 60</td><td><b>60</b></td></tr>
+  <tr><td>70</td><td>3×(70−60)+60 = 30+60 = 90</td><td><b>90</b></td></tr>
+  <tr><td>45</td><td>3×(45−60)+60 = −45+60 = 15</td><td><b>15</b></td></tr>
+  <tr><td>50</td><td>3×(50−60)+60 = −30+60 = 30</td><td><b>30</b></td></tr>
+  <tr><td>40</td><td>3×(40−60)+60 = −60+60 = 0</td><td><b>0</b></td></tr>
+  <tr><td>30</td><td>3×(30−60)+60 = −90+60 = −30 → clamp = 0</td><td><b>0</b></td></tr>
+</table>
+<p><strong>Citra Hasil Kontras (α=3, m=60):</strong></p>
+<table>
+  <tr><td>60</td><td>90</td><td>15</td><td>90</td></tr>
+  <tr><td>30</td><td>60</td><td>60</td><td>60</td></tr>
+  <tr><td>90</td><td>30</td><td>60</td><td>30</td></tr>
+  <tr><td>60</td><td>0</td><td>90</td><td>15</td></tr>
+  <tr><td>60</td><td>0</td><td>90</td><td>60</td></tr>
+  <tr><td>60</td><td>90</td><td>90</td><td>30</td></tr>
+  <tr><td>15</td><td>30</td><td>0</td><td>60</td></tr>
+  <tr><td>60</td><td>30</td><td>0</td><td>30</td></tr>
+  <tr><td>30</td><td>30</td><td>30</td><td>90</td></tr>
+</table>
+
+
+<h2>Soal 3 — Ekualisasi Histogram</h2>
+<div class="soal">
+  Tabel 2 merupakan frekuensi kemunculan warna dari sebuah citra:<br>
+  <table style="margin:8px auto">
+    <tr><th>K</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+    <tr><th>NK</th><td>2</td><td>2</td><td>4</td><td>2</td><td>2</td><td>2</td><td>1</td><td>1</td></tr>
+  </table>
+  a. Ekualisasikan histogram dari nilai-nilai tersebut!<br>
+  b. Berikan penjelasan perbandingan dari keduanya!
+</div>
+
+<h3>a. Ekualisasi Histogram</h3>
+<p><strong>Diketahui:</strong> L = 8 (level 0–7), Total piksel = 2+2+4+2+2+2+1+1 = <strong>16</strong></p>
+
+<p><strong>Langkah 1 — Hitung Probabilitas P(k) = NK / Total:</strong></p>
+<table>
+  <tr><th>K</th><th>NK</th><th>P(k) = NK/16</th></tr>
+  <tr><td>0</td><td>2</td><td>2/16 = 0,125</td></tr>
+  <tr><td>1</td><td>2</td><td>2/16 = 0,125</td></tr>
+  <tr><td>2</td><td>4</td><td>4/16 = 0,250</td></tr>
+  <tr><td>3</td><td>2</td><td>2/16 = 0,125</td></tr>
+  <tr><td>4</td><td>2</td><td>2/16 = 0,125</td></tr>
+  <tr><td>5</td><td>2</td><td>2/16 = 0,125</td></tr>
+  <tr><td>6</td><td>1</td><td>1/16 = 0,0625</td></tr>
+  <tr><td>7</td><td>1</td><td>1/16 = 0,0625</td></tr>
+</table>
+
+<p><strong>Langkah 2 — Hitung CDF (Fungsi Distribusi Kumulatif) P_kum(k):</strong></p>
+<table>
+  <tr><th>K</th><th>NK</th><th>P(k)</th><th>P_kum(k)</th></tr>
+  <tr><td>0</td><td>2</td><td>0,125</td><td>0,125</td></tr>
+  <tr><td>1</td><td>2</td><td>0,125</td><td>0,250</td></tr>
+  <tr><td>2</td><td>4</td><td>0,250</td><td>0,500</td></tr>
+  <tr><td>3</td><td>2</td><td>0,125</td><td>0,625</td></tr>
+  <tr><td>4</td><td>2</td><td>0,125</td><td>0,750</td></tr>
+  <tr><td>5</td><td>2</td><td>0,125</td><td>0,875</td></tr>
+  <tr><td>6</td><td>1</td><td>0,0625</td><td>0,9375</td></tr>
+  <tr><td>7</td><td>1</td><td>0,0625</td><td>1,000</td></tr>
+</table>
+
+<p><strong>Langkah 3 — Hitung nilai piksel baru:</strong></p>
+<p>Formula: <strong>s(k) = round(P_kum(k) × (L−1))</strong> = round(P_kum × 7)</p>
+<table>
+  <tr><th>K (asli)</th><th>P_kum</th><th>s(k) = round(P_kum × 7)</th><th>K baru</th></tr>
+  <tr><td>0</td><td>0,125</td><td>round(0,875) = 1</td><td><b>1</b></td></tr>
+  <tr><td>1</td><td>0,250</td><td>round(1,75) = 2</td><td><b>2</b></td></tr>
+  <tr><td>2</td><td>0,500</td><td>round(3,5) = 4</td><td><b>4</b></td></tr>
+  <tr><td>3</td><td>0,625</td><td>round(4,375) = 4</td><td><b>4</b></td></tr>
+  <tr><td>4</td><td>0,750</td><td>round(5,25) = 5</td><td><b>5</b></td></tr>
+  <tr><td>5</td><td>0,875</td><td>round(6,125) = 6</td><td><b>6</b></td></tr>
+  <tr><td>6</td><td>0,9375</td><td>round(6,5625) = 7</td><td><b>7</b></td></tr>
+  <tr><td>7</td><td>1,000</td><td>round(7) = 7</td><td><b>7</b></td></tr>
+</table>
+
+<p><strong>Histogram setelah ekualisasi:</strong></p>
+<table>
+  <tr><th>K baru</th><th>NK baru (jumlah piksel yang dipetakan ke sini)</th></tr>
+  <tr><td>1</td><td>2 (dari K=0)</td></tr>
+  <tr><td>2</td><td>2 (dari K=1)</td></tr>
+  <tr><td>4</td><td>4+2 = 6 (dari K=2 dan K=3)</td></tr>
+  <tr><td>5</td><td>2 (dari K=4)</td></tr>
+  <tr><td>6</td><td>2 (dari K=5)</td></tr>
+  <tr><td>7</td><td>1+1 = 2 (dari K=6 dan K=7)</td></tr>
+</table>
+
+<h3>b. Perbandingan Sebelum dan Sesudah Ekualisasi</h3>
+<table>
+  <tr><th>Aspek</th><th>Histogram Asli</th><th>Histogram Ekualisasi</th></tr>
+  <tr><td>Distribusi</td><td>Terkonsentrasi di nilai rendah (0–7), tidak merata</td><td>Lebih tersebar ke seluruh rentang</td></tr>
+  <tr><td>Nilai tertinggi frekuensi</td><td>K=2 dengan NK=4 (dominan di tengah-rendah)</td><td>K=4 dengan NK=6 (bergeser ke tengah)</td></tr>
+  <tr><td>Kontras citra</td><td>Kontras rendah, rentang nilai sempit (0–7)</td><td>Kontras lebih baik, distribusi lebih merata</td></tr>
+  <tr><td>Kecerahan</td><td>Cenderung gelap (nilai piksel kecil)</td><td>Lebih terang dan merata setelah pemetaan</td></tr>
+  <tr><td>Tujuan</td><td>Histogram asli menunjukkan distribusi yang ada</td><td>Ekualisasi meratakan distribusi untuk meningkatkan kontras visual</td></tr>
+</table>
+<div class="box"><strong>Kesimpulan: Ekualisasi histogram berhasil meningkatkan kontras citra dengan meratakan distribusi intensitas piksel dari rentang yang sempit (0–7) menjadi lebih merata.</strong></div>
+
+
+<hr>
+<div class="page-break"></div>
+<h1>JAWABAN SOAL PENGOLAHAN CITRA — SET 3</h1>
+
+<h2>Soal 1 — Citra Grayscale 4×4, Kedalaman 128</h2>
+<div class="soal">
+  Input citra grayscale 128 (4×4):
+  <table style="margin:8px auto">
+    <tr><td>10</td><td>30</td><td>40</td><td>45</td></tr>
+    <tr><td>40</td><td>45</td><td>10</td><td>30</td></tr>
+    <tr><td>45</td><td>50</td><td>40</td><td>50</td></tr>
+    <tr><td>30</td><td>40</td><td>45</td><td>10</td></tr>
+  </table>
+  a. Citra negatif<br>
+  b. Penguatan kontras dengan koefisien = 4 dan pusat pengontrasan = 5
+</div>
+
+<h3>a. Citra Negatif</h3>
+<p>Formula citra negatif: <strong>g(x,y) = (L−1) − f(x,y)</strong></p>
+<p>L = 128 → L−1 = <strong>127</strong></p>
+<table>
+  <tr><th>f(x,y)</th><th>g = 127 − f</th></tr>
+  <tr><td>10</td><td>127−10 = <b>117</b></td></tr>
+  <tr><td>30</td><td>127−30 = <b>97</b></td></tr>
+  <tr><td>40</td><td>127−40 = <b>87</b></td></tr>
+  <tr><td>45</td><td>127−45 = <b>82</b></td></tr>
+  <tr><td>50</td><td>127−50 = <b>77</b></td></tr>
+</table>
+<p><strong>Citra Negatif Lengkap:</strong></p>
+<table>
+  <tr><td>117</td><td>97</td><td>87</td><td>82</td></tr>
+  <tr><td>87</td><td>82</td><td>117</td><td>97</td></tr>
+  <tr><td>82</td><td>77</td><td>87</td><td>77</td></tr>
+  <tr><td>97</td><td>87</td><td>82</td><td>117</td></tr>
+</table>
+
+<h3>b. Penguatan Kontras (α=4, m=5)</h3>
+<p>Formula: <strong>g(x,y) = α × (f(x,y) − m) + m = 4 × (f − 5) + 5</strong></p>
+<p>Nilai diklem (clamp) pada rentang 0–127 (L=128)</p>
+<table>
+  <tr><th>f(x,y)</th><th>g = 4×(f−5)+5</th><th>Clamp [0,127]</th></tr>
+  <tr><td>10</td><td>4×5+5 = 25</td><td><b>25</b></td></tr>
+  <tr><td>30</td><td>4×25+5 = 105</td><td><b>105</b></td></tr>
+  <tr><td>40</td><td>4×35+5 = 145</td><td><b>127</b></td></tr>
+  <tr><td>45</td><td>4×40+5 = 165</td><td><b>127</b></td></tr>
+  <tr><td>50</td><td>4×45+5 = 185</td><td><b>127</b></td></tr>
+</table>
+<p><strong>Citra Hasil Kontras:</strong></p>
+<table>
+  <tr><td>25</td><td>105</td><td>127</td><td>127</td></tr>
+  <tr><td>127</td><td>127</td><td>25</td><td>105</td></tr>
+  <tr><td>127</td><td>127</td><td>127</td><td>127</td></tr>
+  <tr><td>105</td><td>127</td><td>127</td><td>25</td></tr>
+</table>
+
+
+<h2>Soal 2 — Histogram Citra 8×8, 3-bit</h2>
+<div class="soal">
+  Histogram (Gambar 2) merepresentasikan citra grayscale 8×8 piksel dengan kedalaman 3-bit.<br>
+  Dari histogram: X=1→f=5, X=2→f=5, X=3→f=7, X=4→f=9, X=5→f=10, X=6→f=10, X=7→f=15<br>
+  a. Hitung frekuensi dan normalisasi!<br>
+  b. Analisis tingkat kecerahan citra!<br>
+  3. Ekualisasikan histogram!
+</div>
+
+<h3>a. Frekuensi dan Normalisasi Histogram</h3>
+<p><strong>Diketahui:</strong> Citra 8×8 = 64 piksel, Kedalaman 3-bit → L = 2³ = <strong>8 level (0–7)</strong></p>
+<p>Dari pembacaan histogram (Gambar 2):</p>
+<table>
+  <tr><th>Nilai Warna (k)</th><th>Frekuensi f(k)</th><th>P(k) = f(k)/64</th></tr>
+  <tr><td>1</td><td>5</td><td>5/64 = 0,0781</td></tr>
+  <tr><td>2</td><td>5</td><td>5/64 = 0,0781</td></tr>
+  <tr><td>3</td><td>7</td><td>7/64 = 0,1094</td></tr>
+  <tr><td>4</td><td>9</td><td>9/64 = 0,1406</td></tr>
+  <tr><td>5</td><td>10</td><td>10/64 = 0,1563</td></tr>
+  <tr><td>6</td><td>10</td><td>10/64 = 0,1563</td></tr>
+  <tr><td>7</td><td>15</td><td>15/64 = 0,2344</td></tr>
+  <tr><td>0</td><td>3</td><td>3/64 = 0,0469</td></tr>
+  <tr><th>TOTAL</th><th>64</th><th>≈ 1,000</th></tr>
+</table>
+
+<h3>b. Analisis Tingkat Kecerahan</h3>
+<p><strong>Nilai rata-rata intensitas:</strong></p>
+<div class="step">μ = Σ(k × f(k)) / Total = (0×3 + 1×5 + 2×5 + 3×7 + 4×9 + 5×10 + 6×10 + 7×15) / 64</div>
+<div class="step">= (0 + 5 + 10 + 21 + 36 + 50 + 60 + 105) / 64 = 287 / 64 ≈ <strong>4,48</strong></div>
+<p>Rentang nilai tengah untuk 3-bit (0–7) adalah 3,5. Nilai rata-rata 4,48 > 3,5.</p>
+<div class="box"><strong>Kesimpulan: Citra cenderung memiliki tingkat kecerahan TINGGI.</strong><br>
+Alasan: Mayoritas piksel terkonsentrasi di nilai tinggi (5, 6, 7) dengan frekuensi 10, 10, 15. Nilai rata-rata intensitas (4,48) berada di atas nilai tengah (3,5) dari skala 3-bit (0–7), menunjukkan citra secara keseluruhan lebih terang daripada gelap.</div>
+
+<h2>Soal 3 — Ekualisasi Histogram (3-bit)</h2>
+<div class="soal">Ekualisasikan histogram pada Gambar 2!</div>
+
+<h3>Langkah 1 — Data histogram (dengan asumsi k=0 ada 3 piksel agar total=64):</h3>
+<table>
+  <tr><th>k</th><th>f(k)</th><th>P(k)</th><th>CDF P_kum(k)</th></tr>
+  <tr><td>0</td><td>3</td><td>0,0469</td><td>0,0469</td></tr>
+  <tr><td>1</td><td>5</td><td>0,0781</td><td>0,1250</td></tr>
+  <tr><td>2</td><td>5</td><td>0,0781</td><td>0,2031</td></tr>
+  <tr><td>3</td><td>7</td><td>0,1094</td><td>0,3125</td></tr>
+  <tr><td>4</td><td>9</td><td>0,1406</td><td>0,4531</td></tr>
+  <tr><td>5</td><td>10</td><td>0,1563</td><td>0,6094</td></tr>
+  <tr><td>6</td><td>10</td><td>0,1563</td><td>0,7656</td></tr>
+  <tr><td>7</td><td>15</td><td>0,2344</td><td>1,0000</td></tr>
+</table>
+
+<h3>Langkah 2 — Hitung nilai baru s(k) = round(CDF × (L−1)) = round(CDF × 7):</h3>
+<table>
+  <tr><th>k</th><th>CDF</th><th>s(k) = round(CDF × 7)</th><th>k baru</th></tr>
+  <tr><td>0</td><td>0,0469</td><td>round(0,328) = 0</td><td><b>0</b></td></tr>
+  <tr><td>1</td><td>0,1250</td><td>round(0,875) = 1</td><td><b>1</b></td></tr>
+  <tr><td>2</td><td>0,2031</td><td>round(1,422) = 1</td><td><b>1</b></td></tr>
+  <tr><td>3</td><td>0,3125</td><td>round(2,188) = 2</td><td><b>2</b></td></tr>
+  <tr><td>4</td><td>0,4531</td><td>round(3,172) = 3</td><td><b>3</b></td></tr>
+  <tr><td>5</td><td>0,6094</td><td>round(4,266) = 4</td><td><b>4</b></td></tr>
+  <tr><td>6</td><td>0,7656</td><td>round(5,359) = 5</td><td><b>5</b></td></tr>
+  <tr><td>7</td><td>1,0000</td><td>round(7,000) = 7</td><td><b>7</b></td></tr>
+</table>
+
+<h3>Langkah 3 — Histogram setelah ekualisasi:</h3>
+<table>
+  <tr><th>k baru</th><th>Frekuensi (piksel yang dipetakan)</th><th>Asal k</th></tr>
+  <tr><td>0</td><td>3</td><td>k=0</td></tr>
+  <tr><td>1</td><td>5+5 = 10</td><td>k=1, k=2</td></tr>
+  <tr><td>2</td><td>7</td><td>k=3</td></tr>
+  <tr><td>3</td><td>9</td><td>k=4</td></tr>
+  <tr><td>4</td><td>10</td><td>k=5</td></tr>
+  <tr><td>5</td><td>10</td><td>k=6</td></tr>
+  <tr><td>6</td><td>0</td><td>—</td></tr>
+  <tr><td>7</td><td>15</td><td>k=7</td></tr>
+  <tr><th>TOTAL</th><th>64</th><th></th></tr>
+</table>
+<div class="box"><strong>Kesimpulan Ekualisasi:</strong> Histogram berhasil diratakan. Piksel yang semula terkonsentrasi di nilai tinggi (5,6,7) kini disebarkan ke seluruh rentang 0–7, sehingga kontras citra meningkat dan detail yang sebelumnya tersembunyi menjadi lebih terlihat.</div>
+
+</body>
+</html>
