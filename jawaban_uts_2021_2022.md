@@ -28,8 +28,8 @@ Analisis target: output = 1 **hanya** ketika x1=1 DAN x2=1
 
 ```
 Bobot awal : w₁ = 0.a, w₂ = 0.a
-  (Nilai "a" = 1 digit belakang NPM. Jika NPM belakang 0, gunakan 1)
-  Asumsi NPM belakang = 1  →  w₁ = 0.1,  w₂ = 0.1
+  (Nilai "a" = 1 digit belakang NPM = 8)
+  NPM belakang = 8  →  w₁ = 0.8,  w₂ = 0.8
 
 Bias awal  : b  = 0.7
 Fungsi aktivasi (Step Function biner):
@@ -53,51 +53,51 @@ Aturan Hebb (Hebb's Rule):
 
 **─── Data ke-1: x=[1, 0], t=0 ───**
 ```
-w₁(baru) = 0.1 + (1 × 0) = 0.1 + 0 = 0.1
-w₂(baru) = 0.1 + (0 × 0) = 0.1 + 0 = 0.1
+w₁(baru) = 0.8 + (1 × 0) = 0.8 + 0 = 0.8
+w₂(baru) = 0.8 + (0 × 0) = 0.8 + 0 = 0.8
 b(baru)  = 0.7 + 0        = 0.7
 
-Bobot setelah data 1: w₁=0.1, w₂=0.1, b=0.7
+Bobot setelah data 1: w₁=0.8, w₂=0.8, b=0.7
 ```
 
 **─── Data ke-2: x=[1, 1], t=1 ───**
 ```
-w₁(baru) = 0.1 + (1 × 1) = 0.1 + 1 = 1.1
-w₂(baru) = 0.1 + (1 × 1) = 0.1 + 1 = 1.1
+w₁(baru) = 0.8 + (1 × 1) = 0.8 + 1 = 1.8
+w₂(baru) = 0.8 + (1 × 1) = 0.8 + 1 = 1.8
 b(baru)  = 0.7 + 1        = 1.7
 
-Bobot setelah data 2: w₁=1.1, w₂=1.1, b=1.7
+Bobot setelah data 2: w₁=1.8, w₂=1.8, b=1.7
 ```
 
 **─── Data ke-3: x=[0, 0], t=0 ───**
 ```
-w₁(baru) = 1.1 + (0 × 0) = 1.1
-w₂(baru) = 1.1 + (0 × 0) = 1.1
+w₁(baru) = 1.8 + (0 × 0) = 1.8
+w₂(baru) = 1.8 + (0 × 0) = 1.8
 b(baru)  = 1.7 + 0        = 1.7
 
-Bobot setelah data 3: w₁=1.1, w₂=1.1, b=1.7
+Bobot setelah data 3: w₁=1.8, w₂=1.8, b=1.7
 ```
 
 **─── Data ke-4: x=[0, 1], t=0 ───**
 ```
-w₁(baru) = 1.1 + (0 × 0) = 1.1
-w₂(baru) = 1.1 + (1 × 0) = 1.1
+w₁(baru) = 1.8 + (0 × 0) = 1.8
+w₂(baru) = 1.8 + (1 × 0) = 1.8
 b(baru)  = 1.7 + 0        = 1.7
 
-Bobot FINAL: w₁=1.1, w₂=1.1, b=1.7
+Bobot FINAL: w₁=1.8, w₂=1.8, b=1.7
 ```
 
 ### E. Rekap Pelatihan Hebb
 
 | Data | x1 | x2 | t | w₁(baru) | w₂(baru) | b(baru) |
 |------|----|----|---|----------|----------|---------|
-| Init |  — |  — | — | 0.1      | 0.1      | 0.7     |
-| 1    |  1 |  0 | 0 | 0.1      | 0.1      | 0.7     |
-| 2    |  1 |  1 | 1 | 1.1      | 1.1      | 1.7     |
-| 3    |  0 |  0 | 0 | 1.1      | 1.1      | 1.7     |
-| 4    |  0 |  1 | 0 | 1.1      | 1.1      | 1.7     |
+| Init |  — |  — | — | 0.8      | 0.8      | 0.7     |
+| 1    |  1 |  0 | 0 | 0.8      | 0.8      | 0.7     |
+| 2    |  1 |  1 | 1 | 1.8      | 1.8      | 1.7     |
+| 3    |  0 |  0 | 0 | 1.8      | 1.8      | 1.7     |
+| 4    |  0 |  1 | 0 | 1.8      | 1.8      | 1.7     |
 
-**Bobot akhir: w₁ = 1.1, w₂ = 1.1, b = 1.7**
+**Bobot akhir: w₁ = 1.8, w₂ = 1.8, b = 1.7**
 
 ### F. Pengujian / Verifikasi (Diterima atau Ditolak?)
 
@@ -105,29 +105,29 @@ Rumus: `net = w₁·x₁ + w₂·x₂ + b`
 
 **Data 1: x=[1, 0], t=0**
 ```
-net = 1.1(1) + 1.1(0) + 1.7 = 1.1 + 0 + 1.7 = 2.8
-f(net) = 1  (karena 2.8 ≥ 0)
+net = 1.8(1) + 1.8(0) + 1.7 = 1.8 + 0 + 1.7 = 3.5
+f(net) = 1  (karena 3.5 ≥ 0)
 Prediksi = 1, Target = 0  →  ❌ TIDAK SESUAI
 ```
 
 **Data 2: x=[1, 1], t=1**
 ```
-net = 1.1(1) + 1.1(1) + 1.7 = 1.1 + 1.1 + 1.7 = 3.9
-f(net) = 1  (karena 3.9 ≥ 0)
+net = 1.8(1) + 1.8(1) + 1.7 = 1.8 + 1.8 + 1.7 = 5.3
+f(net) = 1  (karena 5.3 ≥ 0)
 Prediksi = 1, Target = 1  →  ✅ SESUAI
 ```
 
 **Data 3: x=[0, 0], t=0**
 ```
-net = 1.1(0) + 1.1(0) + 1.7 = 0 + 0 + 1.7 = 1.7
+net = 1.8(0) + 1.8(0) + 1.7 = 0 + 0 + 1.7 = 1.7
 f(net) = 1  (karena 1.7 ≥ 0)
 Prediksi = 1, Target = 0  →  ❌ TIDAK SESUAI
 ```
 
 **Data 4: x=[0, 1], t=0**
 ```
-net = 1.1(0) + 1.1(1) + 1.7 = 0 + 1.1 + 1.7 = 2.8
-f(net) = 1  (karena 2.8 ≥ 0)
+net = 1.8(0) + 1.8(1) + 1.7 = 0 + 1.8 + 1.7 = 3.5
+f(net) = 1  (karena 3.5 ≥ 0)
 Prediksi = 1, Target = 0  →  ❌ TIDAK SESUAI
 ```
 
@@ -148,8 +148,9 @@ Jaringan Hebb tidak mampu mengenali fungsi AND dengan benar.
 ALASAN:
 Aturan Hebb bersifat unsupervised (tidak memperhitungkan error),
 sehingga bobot hanya mencerminkan korelasi input-output tanpa
-mekanisme koreksi. Dengan bias yang besar (1.7), semua net input
-menjadi positif sehingga f(net) selalu = 1.
+mekanisme koreksi. Dengan bias b=1.7 dan bobot awal w=0.8,
+semua net input menjadi positif sehingga f(net) selalu = 1,
+tanpa memandang input yang diberikan.
 
 Untuk mengatasi ini diperlukan:
 • Perceptron Learning Rule (ada mekanisme koreksi error)
